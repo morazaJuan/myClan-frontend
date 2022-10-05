@@ -1,3 +1,6 @@
 {
+    "domain": "",
+  "clientId": "",
+  "audience": "",
   "serverUrl": "https://myclan-backend.netlify.app/.netlify/functions/index"
 }
