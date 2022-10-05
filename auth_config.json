@@ -1,0 +1,6 @@
+{
+  "domain": "",
+  "clientId": "",
+  "audience": "",
+  "serverUrl": "http://localhost:9000/.netlify/functions/index"
+}

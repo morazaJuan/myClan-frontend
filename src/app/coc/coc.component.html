@@ -1,0 +1,125 @@
+<div class="container"><img class="background" />
+
+<div class="container">
+    <div class="row" style="height: 475px;">
+      <div style="margin: 100px auto; ">
+        <div style="height: 50pt;">
+          <h1 style="    display: contents;">{{myClan.name}}</h1>
+          <img src="{{myClan.badgeUrls.medium}}" style="height:100%;">
+        </div>
+        <div style="margin: auto auto;  width: fit-content;">
+          <small> <span style="color: red; font-weight: 900;" class="glow">{{myClan.warWins}}</span> Wars Won | </small>
+          <small><span style="color: rgb(255, 221, 0); font-weight: 900;">Level {{myClan.clanCapital.capitalHallLevel}} </span>  Clan Capital </small>
+        </div>
+        <div style="margin: auto auto;  width: fit-content;">
+
+        <small>Members: <span style="color: rgb(255, 128, 73); font-weight: 900;">{{myClan.members}} </span>   </small>
+</div>
+      </div>
+      <style>
+    
+
+      </style>
+            <div style="position: absolute; height: 225px; bottom: 0; width:100%; " class="row">
+                
+        <div class="col-12">
+            <div class="member ">
+              <div>
+                <strong>Leader</strong>
+              </div>
+  
+            </div>
+            <ng-container *ngFor="let member of myClan.memberList">
+              <div *ngIf="member.role  === 'leader' " class="member ">
+                <div>
+                <img class="league" src="{{member.league.iconUrls.small}}">
+                     {{member.name}}
+                  <small alt="Experience Level"> {{member.expLevel}}xp</small>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+</div>
+      <div style="position: absolute; height: fit-content; bottom: -70px; width:100%; " class="row">
+
+       
+        <div class="col-6">
+
+          <div class="member ">
+            <div>
+              <strong>Co-leaders</strong>
+            </div>
+          </div>
+
+          <ng-container *ngFor="let member of myClan.memberList">
+            <div *ngIf="member.role  === 'coLeader' " class="member ">
+
+              <div>
+                <img class="league" src="{{member.league.iconUrls.small}}">
+
+                {{member.name}}
+                <small alt="Experience Level"> {{member.expLevel}}xp</small>
+            </div>
+            </div>
+          </ng-container>
+
+        </div>
+
+  
+        <div class="col-6">
+
+        <div class="member ">
+          <div>
+            <strong>Elders</strong>
+          </div>
+        </div>
+
+        <ng-container *ngFor="let member of myClan.memberList">
+          <div *ngIf="member.role  === 'admin' " class="member ">
+            <div>
+                <img class="league" src="{{member.league.iconUrls.small}}">
+                {{member.name}}
+                <small alt="Experience Level"> {{member.expLevel}}xp</small>
+            </div>
+
+          </div>
+        </ng-container>
+       
+      </div>
+    </div>
+   
+    </div>
+  </div>
+  <div>
+    <div class="container membersDiv">
+        <div class="member " style=" margin: 0 auto;   width: fit-content;">
+            <div>
+              <strong>Members</strong>
+            </div>
+          </div>
+    <div class="row" style="margin:0 auto;">
+       
+              <br>
+            <ng-container *ngFor="let member of myClan.memberList">
+                <div *ngIf="member.role  === 'member' " class="member "  style="  margin: 0 10px; display: inline-block;  width: fit-content;">
+                  <div style="display: inline;"> 
+                    {{member.name}}  
+                  </div>
+                </div>
+                <span  *ngIf="member.role  === 'member' "  style="color: rgb(38, 255, 0);" class="or"> |  </span>
+
+              </ng-container>
+        </div>
+        <div>
+            <br>
+        </div>
+    </div>
+  <div class="container">
+    <div class="row">
+        <p style="color:rgb(146, 146, 146)">This content is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not responsible for it. For more information see Supercell’s Fan Content Policy: www.supercell.com/fan-content-policy.</p>
+
+    </div>
+  </div>
+</div>
+
+  
