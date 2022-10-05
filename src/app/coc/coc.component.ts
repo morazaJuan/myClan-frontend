@@ -40,9 +40,9 @@ export class CocComponent implements OnInit {
 
     let res;
     this.http.get(`${env.dev.serverUrl}/coc/getClanInfo`, options).subscribe((result: Clan) => {
-        // this.myClan = result;
-        console.log('result');
-        console.log(result);
+        this.myClan = result;
+        // console.log('result');
+        // console.log(result);
 
         res = result;
       });
