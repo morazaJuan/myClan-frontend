@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment as env } from '../../environments/environment';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { environment as env } from "../../environments/environment";
 interface Clan {
-[x: string]: any;
+  [x: string]: any;
 
-  name: string  ;
+  name: string;
   clanLevel: string;
   members: number;
   badgePic: string;
@@ -16,47 +16,40 @@ interface Member {
   role: string;
 }
 @Component({
-  selector: 'app-coc',
-  templateUrl: './coc.component.html',
-  styleUrls: ['./coc.component.css']
+  selector: "app-coc",
+  templateUrl: "./coc.component.html",
+  styleUrls: ["./coc.component.css"],
 })
 export class CocComponent implements OnInit {
- 
- 
-  myClan:Clan;
-clanName: any;
-members: any;
-rank: any;
- separator = " |  "
+  myClan: Clan;
+  clanName: any;
+  members: any;
+  rank: any;
+  separator = " |  ";
   constructor(private http: HttpClient) {
-    this.callApi();
-
+    this.getClanInfo();
   }
 
   ngOnInit(): void {}
 
-  callApi(): void {
+  getClanInfo(): void {
+    console.log('entered!!')
     let options = {
       headers: new HttpHeaders().set("Access-Control-Allow-Origin", "*"),
     };
 
-let r;
-    this.http
-      .get(`${env.dev.serverUrl}/coc/getClanInfo`,  options )
-      .subscribe((result: Clan) => {
-        
-        this.myClan = result;
-   
-        r = result;
+    let res;
+    this.http.get(`${env.dev.serverUrl}/coc/getClanInfo`, options).subscribe((result: Clan) => {
+        // this.myClan = result;
+        console.log('result');
+        console.log(result);
+
+        res = result;
       });
-      console.log("entered");
-      setTimeout(() => {     
-        console.log(r);
-      }, 2000)
- 
+      
+    console.log("entered");
+    setTimeout(() => {
+      console.log(res);
+    }, 2000);
   }
-
- 
-
 }
- 
