@@ -61,9 +61,7 @@ import { CocComponent } from './coc/coc.component';
       ...env.auth,
       httpInterceptor: {
         allowedList: [
-          `${env.dev.serverUrl}/messages/protected-message`,
-          `${env.dev.serverUrl}/messages/public-message`,
-          `${env.dev.serverUrl}/updateVideo/update-video`],
+          `${env.dev.serverUrl}/coc/getClanInfo`],
       },
     }),
   ],
