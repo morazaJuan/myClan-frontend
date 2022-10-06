@@ -44,7 +44,7 @@ export class CocComponent implements OnInit {
         // console.log('result');
         // console.log(result);
 
-        res = result;
+        res = result.body;
       });
       
     console.log("entered");
