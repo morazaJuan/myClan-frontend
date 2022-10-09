@@ -1,64 +1,66 @@
 * {
-    margin: 0 auto;
-    padding: 0;
-  }
-  .membersDiv {
-    padding: 20px 30pt;
-    max-width: 800px;
-    margin: 0 auto;
-  }  
-  .league {
-    height: 20px;
-  }
-  .member small {
-    font-size: 50%;
-    background-color: rgb(0, 126, 222);
-    padding: 2pt;
-    border-radius:7px;
-    font-weight: 600;
-
-  }
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-.member div {
-
-  width: fit-content;
-margin: 0 auto;
+  margin: 0 auto;
+  padding: 0;
+}
+.membersDiv {
+  padding: 20px 30pt;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.league {
+  height: 20px;
+}
+.member small {
+  font-size: 50%;
+  background-color: rgb(0, 126, 222);
+  padding: 2pt;
+  border-radius: 7px;
+  font-weight: 600;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
- 
-  .container {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    position: relative;
-    color: #fff;
+.member div {
+  width: fit-content;
+  margin: 0 auto;
+}
 
-   }
-  
-  .or{
-    display: inline;
-  }
+.container {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
 
-  
+.or {
+  display: inline;
+}
+.row{
+  width: 100%;
+  margin: 0 0 20px 0 ;
+}
+
 .glow {
-    /* font-size: 80px; */
-    color: #fff;
-    text-align: center;
-    animation: glow 1s ease-in-out infinite alternate;
+  /* font-size: 80px; */
+  color: #fff;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 5px rgb(54, 54, 54), 0 0 10px rgb(62, 62, 62),
+      0 0 20px #ff4d4d, 0 0 25px #ff4d4d, 0 0 30px #ff1d1d, 0 0 35px #fe1414,
+      0 0 40px #ff1111;
   }
-  
-  @-webkit-keyframes glow {
-    from {
-      text-shadow: 0 0 5px rgb(54, 54, 54), 0 0 10px rgb(62, 62, 62), 0 0 20px #ff4d4d, 0 0 25px #ff4d4d, 0 0 30px #ff1d1d, 0 0 35px #fe1414, 0 0 40px #ff1111;
-    }
-    
-    to {
-      text-shadow: 0 0 5px rgb(32, 32, 32), 0 0 7px #602929, 0 0 10px #b02424, 0 0 20px #ff4d4d, 0 0 30px #ff1d1d, 0 0 400px #fe1414, 0 0 50px #ff0000;
-    }
+
+  to {
+    text-shadow: 0 0 5px rgb(32, 32, 32), 0 0 7px #602929, 0 0 10px #b02424,
+      0 0 20px #ff4d4d, 0 0 30px #ff1d1d, 0 0 400px #fe1414, 0 0 50px #ff0000;
   }
+}
