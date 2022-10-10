@@ -18,7 +18,9 @@ body {
   );
   animation: AnimateBG 20s ease infinite;
 }
-
+.clanName{
+  font-size: 40px!important;
+}
 @keyframes AnimateBG {
   0% {
     background-position: 0% 50%;
