@@ -31,7 +31,9 @@ body {
 .member {
   cursor: pointer;
 }
-
+.clanName{
+  height: 50pt; width: fit-content;
+}
 .container {
   width: 100%;
   min-height: 100%;
