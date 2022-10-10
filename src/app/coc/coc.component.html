@@ -5,7 +5,7 @@
 <div class="container"><img class="background" />
 
   <div class="container">
-    <div class="row" >
+    <div class="row">
       <div style="margin: 100px auto; ">
         <div style="height: 50pt;">
           <h1 style="    display: contents;">{{myClan.name}}</h1>
@@ -20,7 +20,7 @@
           <small>Members: <span style="color: rgb(255, 128, 73); font-weight: 900;">{{myClan.members}} </span> </small>
         </div>
       </div>
-    
+
       <!-- Leader  -->
       <div class="row">
         <div class="leaderSection">
@@ -30,12 +30,16 @@
             </div>
           </div>
           <ng-container *ngFor="let member of myClan.memberList">
+            <div
+            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
+              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
             <div *ngIf="member.role  === 'leader' " class="member ">
               <div>
                 <img class="league" src="{{member.league.iconUrls.small}}">
                 {{member.name}}
                 <small alt="Experience Level"> {{member.expLevel}}xp</small>
               </div>
+            </div>
             </div>
           </ng-container>
         </div>
@@ -46,61 +50,78 @@
         <div class="coLeaderSection col-6">
           <div class="member ">
             <div>
-              <strong>Co-leaders</strong>
+              <strong>Co-leaders </strong>
+              <!-- <div placement="bottom" class="info-icon" popoverTitle="Ordered by Contribution such as:"
+                ngbPopover="donation ratio, activeness, trophies, clan capital pts and more.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+              </div> -->
+
             </div>
           </div>
-          <ng-container *ngFor="let member of myClan.memberList">
-            <div *ngIf="member.role  === 'coLeader' " class="member ">
-              <div>
-                <img class="league" src="{{member.league.iconUrls.small}}">
 
-                {{member.name}}
-                <small alt="Experience Level"> {{member.expLevel}}xp</small>
+          <ng-container *ngFor="let member of myClan.memberList">
+            <!-- <div             
+              (click)="getMoreMemberStats(member.tag)"  -->
+            <div
+            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
+              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
+              <div *ngIf="member.role  === 'coLeader' " class="member">
+                <div>
+                  <img class="league" src="{{member.league.iconUrls.small}}">
+                  {{member.name}}
+                  <small alt="Experience Level"> {{member.expLevel}}xp</small>
+                </div>
               </div>
             </div>
           </ng-container>
         </div>
-      <!-- </div> -->
-      <!-- Elder sections -->
-      <!-- <div class="row"> -->
-        <div class="elderSection col-6"  >
+        <!-- Elder sections -->
+        <div class="elderSection col-6">
           <div class="member ">
             <div>
               <strong>Elders</strong>
             </div>
           </div>
           <ng-container *ngFor="let member of myClan.memberList">
+            <div
+            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
+              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
             <div *ngIf="member.role  === 'admin' " class="member ">
               <div>
                 <img class="league" src="{{member.league.iconUrls.small}}">
                 {{member.name}}
                 <small alt="Experience Level"> {{member.expLevel}}xp</small>
               </div>
-            </div>
+            </div></div>
           </ng-container>
         </div>
       </div>
       <!-- Memeber sections -->
       <div class="row">
-        <div class="memberSection" style=" margin: 0 auto;   width: fit-content;">
-          <div>
-            <strong>Members</strong>
-          </div>
-        </div>
-        <div class="row" style="margin:0 auto;">
-          <br>
-          <ng-container *ngFor="let member of myClan.memberList">
-            <div *ngIf="member.role  === 'member' " class="member "
-              style="  margin: 0 10px; display: inline-block;  width: fit-content;">
-              <div style="display: inline;">
-                {{member.name}}
-              </div>
+        <div class="memberSection col">
+          <div style=" margin: 0 auto;   width: fit-content;">
+            <div>
+              <strong>Members</strong>
             </div>
-            <span *ngIf="member.role  === 'member' " style="color: rgb(38, 255, 0);" class="or"> | </span>
-          </ng-container>
-        </div>
-        <div>
-          <br>
+          </div>
+          <div class="col" style="margin:0 auto;">
+            <br>
+            <ng-container *ngFor="let member of myClan.memberList">
+              
+              <div *ngIf="member.role  === 'member' " class="member "
+                style="  margin: 0 10px; display: inline-block;  width: fit-content;">
+                <div style="display: inline;">
+                  {{member.name}}
+                </div>
+              </div>
+              <span *ngIf="member.role  === 'member' " style="color: rgb(38, 255, 0);" class="or"> | </span>
+            </ng-container>
+          </div>
         </div>
       </div>
       <!-- Disclamer -->
@@ -109,11 +130,6 @@
           approved by Supercell and Supercell is not responsible for it. For more information see Supercell’s Fan
           Content Policy: www.supercell.com/fan-content-policy.</p>
       </div>
-   
+
     </div>
   </div>
-
-
-   
-  
-     

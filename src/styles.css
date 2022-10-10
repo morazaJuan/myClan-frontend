@@ -70,3 +70,8 @@ code {
 .hero .app-logo {
   max-width: 10.5rem;
 }
+
+.popover-header{
+  background-color: #1b1b1b !important;
+  color: #fff;
+}

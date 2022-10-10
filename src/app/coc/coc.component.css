@@ -28,6 +28,9 @@ body {
   width: fit-content;
   margin: 0 auto;
 }
+.member {
+  cursor: pointer;
+}
 
 .container {
   width: 100%;
@@ -36,7 +39,10 @@ body {
   position: relative;
   color: #fff;
 }
-
+ 
+.info-icon{
+  display:inline;
+}
 .or {
   display: inline;
 }

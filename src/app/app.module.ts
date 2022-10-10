@@ -6,12 +6,9 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { FormsModule } from '@angular/forms';
 import { CocComponent } from './coc/coc.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +21,7 @@ import { CocComponent } from './coc/coc.component';
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
+    NgbModule
     // 👇 update AuthModule
  
   ],
