@@ -2,6 +2,13 @@
   margin: 0 auto;
   padding: 0;
 }
+.clanSection{
+  max-width: 700px;
+}
+.roleTitle, .memberSection div{
+  cursor: default!important;
+
+}
 .membersDiv {
   padding: 20px 30pt;
   max-width: 800px;
@@ -71,4 +78,18 @@ body {
     text-shadow: 0 0 5px rgb(32, 32, 32), 0 0 7px #602929, 0 0 10px #b02424,
       0 0 20px #ff4d4d, 0 0 30px #ff1d1d, 0 0 400px #fe1414, 0 0 50px #ff0000;
   }
+}
+@keyframes color {
+  0%   { background: #33CCCC; }
+  20%  { background: #33CC36; }
+  40%  { background: #B8CC33; }
+  60%  { background: #FCCA00; }
+  80%  { background: #33CC36; }
+  100% { background: #33CCCC; }
+}
+body {
+  background: #33CCCC; /* Fallback */
+  animation: color 9s infinite linear;
+  text-align: center;
+  padding: 2em;
 }

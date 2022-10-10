@@ -2,13 +2,13 @@
   button
 </div> -->
 
-<div class="container"><img class="background" />
+<div class="container clanSection"><img class="background" />
 
   <div class="container">
     <div class="row">
       <div style="margin: 100px auto; ">
         <div class="clanName" >
-          <h1 style="    display: contents;">{{myClan.name}}</h1>
+          <h1 style="   font-size: 25pt; display: contents;">{{myClan.name}}</h1>
           <img src="{{myClan.badgeUrls.medium}}" style="height:100%;">
         </div>
         <div style="margin: auto auto;  width: fit-content;">
@@ -26,20 +26,26 @@
         <div class="leaderSection">
           <div class="member ">
             <div>
-              <strong>Leader</strong>
+              <strong class="roleTitle">Leader</strong>
             </div>
           </div>
-          <ng-container *ngFor="let member of myClan.memberList">
-            <div
-            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
-              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
-            <div *ngIf="member.role  === 'leader' " class="member ">
-              <div>
-                <img class="league" src="{{member.league.iconUrls.small}}">
-                {{member.name}}
-                <small alt="Experience Level"> {{member.expLevel}}xp</small>
+          <ng-container *ngFor="let m of players">
+            <!-- <div             
+              (click)="getMoreMemberStats(member.tag)"  -->
+            <div 
+            placement="bottom" class="member" popoverTitle="{{m[1].member.name}}'s stats:"
+              ngbPopover="
+              Trophies: {{m[1].member.trophies}} (+{{(m[1].member.trophies/1000)}})
+              Donation: {{m[1].member.donations}} (+{{(m[1].member.donations/100)}}), 
+              Received: {{m[1].member.donationsReceived}} (-{{(m[1].member.donationsReceived/100)}}), 
+              Total pts: {{m[1].totalPoints}}">
+              <div *ngIf="m[1].member.role  === 'leader' " class="member">
+                <div>
+                  <img class="league" src="{{m[1].member.league.iconUrls.small}}">
+                  {{m[1].member.name}}
+                  <small alt="Experience Level"> {{m[1].member.expLevel}}xp</small>
+                </div>
               </div>
-            </div>
             </div>
           </ng-container>
         </div>
@@ -50,52 +56,72 @@
         <div class="coLeaderSection col-6">
           <div class="member ">
             <div>
-              <strong>Co-leaders </strong>
-              <!-- <div placement="bottom" class="info-icon" popoverTitle="Ordered by Contribution such as:"
-                ngbPopover="donation ratio, activeness, trophies, clan capital pts and more.">
+              <strong class="roleTitle">Co-leaders </strong>
+              <div placement="bottom" class="info-icon" popoverTitle="Ordered by Contribution"
+                ngbPopover="Contribuion such as trophies and donation ratio">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-info-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                   <path
                     d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                 </svg>
-              </div> -->
+              </div>
 
             </div>
           </div>
 
-          <ng-container *ngFor="let member of myClan.memberList">
+          <ng-container *ngFor="let m of players">
             <!-- <div             
               (click)="getMoreMemberStats(member.tag)"  -->
-            <div
-            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
-              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
-              <div *ngIf="member.role  === 'coLeader' " class="member">
+            <div 
+            placement="bottom" class="member" popoverTitle="{{m[1].member.name}}'s stats:"
+              ngbPopover="
+              Trophies: {{m[1].member.trophies}} (+{{(m[1].member.trophies/1000)}})
+              Donation: {{m[1].member.donations}} (+{{(m[1].member.donations/100)}}), 
+              Received: {{m[1].member.donationsReceived}} (-{{(m[1].member.donationsReceived/100)}}), 
+              Total pts: {{m[1].totalPoints}}">
+              <div *ngIf="m[1].member.role  === 'coLeader' " class="member">
                 <div>
-                  <img class="league" src="{{member.league.iconUrls.small}}">
-                  {{member.name}}
-                  <small alt="Experience Level"> {{member.expLevel}}xp</small>
+                  <img class="league" src="{{m[1].member.league.iconUrls.small}}">
+                  {{m[1].member.name}}
+                  <small alt="Experience Level"> {{m[1].member.expLevel}}xp</small>
                 </div>
               </div>
             </div>
           </ng-container>
         </div>
+        <!-- <button (click)="sort()">sort</button> -->
         <!-- Elder sections -->
         <div class="elderSection col-6">
           <div class="member ">
             <div>
-              <strong>Elders</strong>
+              <strong class="roleTitle">Elders </strong>
+              <div placement="bottom" class="info-icon" popoverTitle="Ordered by Contribution"
+              ngbPopover="Contribuion such as trophies and donation ratio">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-info-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+              </svg>
+            </div>
             </div>
           </div>
-          <ng-container *ngFor="let member of myClan.memberList">
-            <div
-            placement="bottom" class="member" popoverTitle="{{member.name}}'s stats:"
-              ngbPopover="Donation: {{member.donations}}, Received: {{member.donationsReceived}}, Trophies: {{member.trophies}}">
-            <div *ngIf="member.role  === 'admin' " class="member ">
+          <ng-container *ngFor="let m of players">
+            <!-- <div             
+              (click)="getMoreMemberStats(member.tag)"  -->
+            <div 
+            placement="bottom" class="member" popoverTitle="{{m[1].member.name}}'s stats:"
+              ngbPopover="
+              Trophies: {{m[1].member.trophies}} (+{{(m[1].member.trophies/1000)}})
+              Donation: {{m[1].member.donations}} (+{{(m[1].member.donations/100)}}), 
+              Received: {{m[1].member.donationsReceived}} (-{{(m[1].member.donationsReceived/100)}}), 
+              Total pts: {{m[1].totalPoints}}">
+            <div *ngIf="m[1].member.role  === 'admin' " class="member ">
               <div>
-                <img class="league" src="{{member.league.iconUrls.small}}">
-                {{member.name}}
-                <small alt="Experience Level"> {{member.expLevel}}xp</small>
+                <img class="league" src="{{m[1].member.league.iconUrls.small}}">
+                {{m[1].member.name}}
+                <small alt="Experience Level"> {{m[1].member.expLevel}}xp</small>
               </div>
             </div></div>
           </ng-container>
@@ -126,9 +152,9 @@
       </div>
       <!-- Disclamer -->
       <div class="row">
-        <p style="color:rgb(146, 146, 146)">This content is not affiliated with, endorsed, sponsored, or specifically
+        <p style="color:rgb(74, 74, 74)">This content is not affiliated with, endorsed, sponsored, or specifically
           approved by Supercell and Supercell is not responsible for it. For more information see Supercell’s Fan
-          Content Policy: www.supercell.com/fan-content-policy.</p>
+          Content Policy: <a style="color: #828282;" href="https://www.supercell.com/fan-content-policy" target="_blank">www.supercell.com/fan-content-policy</a></p>
       </div>
 
     </div>

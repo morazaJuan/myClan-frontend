@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { environment as env } from "../../environments/environment";
+
 interface Clan {
   [x: string]: any;
 
@@ -11,6 +12,9 @@ interface Clan {
   memberList: Member[];
 }
 interface Member {
+  donationsReceived: number;
+  donations: number;
+  trophies: number;
   defenseWins: any;
   attackWins: number;
   tag: any;
@@ -18,11 +22,11 @@ interface Member {
   leaguePic: string;
   expLevel: number;
   role: string;
+  totalPoints:number;
 }
 interface Player {
   [x: string]: any;
-tag: string;
-}
+ }
 @Component({
   selector: "app-coc",
   templateUrl: "./coc.component.html",
@@ -35,12 +39,18 @@ export class CocComponent implements OnInit {
   rank: any;
   memberInfo :Player;
   separator = " |  ";
+  tempMembers = new Map<string, {member: Member, totalPoints:number}>();
+  sortedMembers?;
+  players =  Array<{member: Member, totalPts: number}>();
+
   constructor(private http: HttpClient) {
     this.getClanInfo();
     // this.memberInfo = 'ss';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sort();
+  }
 
   getClanInfo(): void {
     console.log("entered!!");
@@ -53,9 +63,11 @@ export class CocComponent implements OnInit {
       .get(`${env.dev.serverUrl}/coc/getClanInfo`, options)
       .subscribe((result: Player) => {
         this.myClan = result.body;
-        console.log(this.myClan.memberList[0]);
+      
+
         this.memberInfo = result;
         res = result.body;
+        this.sort();
       });
 
     console.log("entered");
@@ -64,6 +76,30 @@ export class CocComponent implements OnInit {
     }, 2000);
   }
 
+  sort(){
+    let i = 0;
+    let totalPoints = 0.0;
+    let trophyPts =0;
+    let donationsPts= 0;
+    let donationsReceivedPts= 0;
+    for (let member of this.myClan.memberList ){     
+      trophyPts =  member.trophies/1000;
+      donationsPts =  member.donations/100;
+      donationsReceivedPts =  member.donationsReceived/100;
+
+      totalPoints = trophyPts+donationsPts-donationsReceivedPts;
+      totalPoints = Math.round(totalPoints * 10) / 10; //rount to 1 decimal place
+      this.tempMembers.set(member.tag, {member: member, totalPoints: totalPoints})
+      i++;
+    }
+    this.sortedMembers = new Map([...this.tempMembers.entries()].sort((a, b) => b[1].totalPoints - a[1].totalPoints));
+    // console.log(this.sortedMembers);
+ 
+    for(let m of this.sortedMembers){
+      this.players.push(m)
+    }
+    // console.log(this.players);
+  }
   getMoreMemberStats(memberTag): void {
     // let member;
     let options = {
@@ -74,39 +110,18 @@ export class CocComponent implements OnInit {
     this.http
       .get(`${env.dev.serverUrl}/coc/getMemberInfo`, options)
       .subscribe((result: any) => {
-         // console.log(result);
-        // console.log(result);
-     
+
         memberRes = result.body;
         let i = 0;
         for (let member of this.myClan.memberList) {
           if (member.tag === memberTag) {
-            // console.log(memberRes.name);
-            // console.log(memberRes.attackWins);
-            // console.log(memberRes.defenseWins);
             this.memberInfo = memberRes
-            // this.myClan.memberList[i].attackWins = memberRes.attackWins ;
-            // this.myClan.memberList[i].defenseWins = memberRes.defenseWins ;
           }
           i++;
         }
       });
 
-    // console.log("entered");
-    // setTimeout(() => {
-    //   // console.log(member);
-    //   let i = 0;
-    //   for (let member of this.myClan.memberList) {
-    //     if (member.tag === memberTag) {
-    //       console.log(memberRes.name);
-    //       console.log(memberRes.attackWins);
-    //       console.log(memberRes.defenseWins);
-    //       this.myClan.memberList[i].attackWins = memberRes.attackWins ;
-    //       this.myClan.memberList[i].defenseWins = memberRes.defenseWins ;
-    //     }
-    //     i++;
-    //   }
-    // }, 2000);
+
   
   }
 }
